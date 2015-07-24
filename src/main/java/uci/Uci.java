@@ -14,59 +14,58 @@ public class Uci {
     public static void loop() {
         Scanner scan = new Scanner(System.in);
 
-        String command = "";
-
-        // DO: reorder based on frequency of calls
         while(!userHasQuit) {
-            try {
-                command = scan.nextLine();
-
-                if(command.equals("quit")) {
-                    in_quit();
-                }
-                else if(command.equals("uci")) {
-                    in_uci();
-                }
-                else if(command.equals("debug")) {
-                    in_debug();
-                }
-                else if(command.equals("isready")) {
-                    in_isready();
-                }
-                else if(command.startsWith("setoption")) {
-                    in_setoption(command);
-                }
-                else if(command.startsWith("register")) {
-                    in_register(command);
-                }
-                else if(command.equals("ucinewgame")) {
-                    in_ucinewgame();
-                }
-                else if(command.startsWith("position")) {
-                    in_position(command);
-                }
-                else if(command.startsWith("go")) {
-                    in_go(command);
-                }
-                else if(command.equals("stop")) {
-                    in_stop();
-                }
-                else if(command.startsWith("ponderhit")) {
-                    in_ponderhit();
-                }
-                else {
-                    throw new UnknownCommandException();
-                }
-            }
-            catch(UnknownCommandException | IllegalArgumentException e) {
-                // move along, as per uci specifications: "if the engine or the GUI receives an
-                // unknown command or token it should just ignore it"
-                respond("Unable to parse command: <" + command + ">");
-            }
+            processCommand(scan.nextLine());
         }
 
         scan.close();
+    }
 
+    /* default (for testing purposes) */static void processCommand(String command) {
+        // DO: reorder based on frequency of calls
+        try {
+            if(command.equals("quit")) {
+                in_quit();
+            }
+            else if(command.equals("uci")) {
+                in_uci();
+            }
+            else if(command.equals("debug")) {
+                in_debug();
+            }
+            else if(command.equals("isready")) {
+                in_isready();
+            }
+            else if(command.startsWith("setoption")) {
+                in_setoption(command);
+            }
+            else if(command.startsWith("register")) {
+                in_register(command);
+            }
+            else if(command.equals("ucinewgame")) {
+                in_ucinewgame();
+            }
+            else if(command.startsWith("position")) {
+                in_position(command);
+            }
+            else if(command.startsWith("go")) {
+                in_go(command);
+            }
+            else if(command.equals("stop")) {
+                in_stop();
+            }
+            else if(command.startsWith("ponderhit")) {
+                in_ponderhit();
+            }
+            else {
+                throw new UnknownCommandException();
+            }
+        }
+        catch(UnknownCommandException | IllegalArgumentException e) {
+            // move along, as per uci specifications: "if the engine or the GUI receives an
+            // unknown command or token it should just ignore it"
+            respond("Unable to parse command: <" + command + ">");
+        }
     }
 
     // =============================================================================================
