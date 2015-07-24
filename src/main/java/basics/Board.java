@@ -261,27 +261,59 @@ public class Board {
         return sb.toString();
     }
 
-    public String toGridString() {
+    public String toCoordinateBoardString() {
         StringBuilder sb = new StringBuilder();
 
         char currentPiece;
 
+        sb.append("  ");
+        for(int column = 0; column < this.getNumCols(); column++) {
+            sb.append("   " + column);
+        }
+
+        sb.append("\n   +---+---+---+---+---+---+---+---+\n");
         for(int i = 0; i < this.position.length; ++i) {
             if(i > 0) {
                 sb.append("\n");
             }
+            sb.append(" ").append(i).append(" | ");
             for(int j = 0; j < this.position[i].length; ++j) {
                 if(j > 0) {
                     sb.append(' ');
                 }
                 currentPiece = this.position[i][j];
-                if(currentPiece == EMPTY_PIECE) {
-                    sb.append('-');
-                }
-                else {
-                    sb.append(currentPiece);
-                }
+                sb.append(currentPiece).append(" |");
             }
+            sb.append("\n   +---+---+---+---+---+---+---+---+");
+        }
+
+        return sb.toString();
+    }
+
+    public String toChessBoardString() {
+        StringBuilder sb = new StringBuilder();
+
+        char currentPiece;
+
+        sb.append("   +---+---+---+---+---+---+---+---+\n");
+        for(int i = 0; i < this.position.length; ++i) {
+            if(i > 0) {
+                sb.append("\n");
+            }
+            sb.append(" ").append(8 - i).append(" | ");
+            for(int j = 0; j < this.position[i].length; ++j) {
+                if(j > 0) {
+                    sb.append(' ');
+                }
+                currentPiece = this.position[i][j];
+                sb.append(currentPiece).append(" |");
+            }
+            sb.append("\n   +---+---+---+---+---+---+---+---+");
+        }
+
+        sb.append("\n  ");
+        for(char file = 'A'; file < ('A' + this.getNumCols()); file++) {
+            sb.append("   " + file);
         }
 
         return sb.toString();
@@ -289,7 +321,7 @@ public class Board {
 
     @Override
     public String toString() {
-        return this.toGridString();
+        return this.toCoordinateBoardString();
     }
 
     /* eclipse-generated method */

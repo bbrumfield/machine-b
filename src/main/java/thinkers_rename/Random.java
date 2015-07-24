@@ -23,7 +23,7 @@ public class Random extends ThoughtProcess {
     public void searchAndEvaluate() {
         Set<Move> legalMoves = MoveGenerator.getLegalMoves(this.gameState);
 
-        System.out.println("\n" + this.gameState.getBoard().toGridString() + "\n");
+        System.out.println("\n" + this.gameState.getBoard().toChessBoardString() + "\n");
 
         System.out.print("possible moves:");
         for(Move move : legalMoves) {
