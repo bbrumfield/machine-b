@@ -134,6 +134,13 @@ public class MoveTracker {
         MoveTracker copy =
                 new MoveTracker(this.whiteToMove, this.halfMoveClock, this.fullMoveNumber);
 
+        copy.hasMovedWhiteKing = this.hasMovedWhiteKing;
+        copy.hasMovedWhiteKingsideRook = this.hasMovedWhiteKingsideRook;
+        copy.hasMovedWhiteQueensideRook = this.hasMovedWhiteQueensideRook;
+        copy.hasMovedBlackKing = this.hasMovedBlackKing;
+        copy.hasMovedBlackKingsideRook = this.hasMovedBlackKingsideRook;
+        copy.hasMovedBlackQueensideRook = this.hasMovedBlackQueensideRook;
+
         copy.movesSoFar = Utils.deepCopy(this.movesSoFar);
 
         return copy;
