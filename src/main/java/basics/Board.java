@@ -321,7 +321,7 @@ public class Board {
 
     @Override
     public String toString() {
-        return this.toCoordinateBoardString();
+        return this.toChessBoardString();
     }
 
     /* eclipse-generated method */
