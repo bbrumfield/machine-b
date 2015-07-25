@@ -12,12 +12,12 @@ public class MoveTracker {
     private boolean whiteToMove;
 
     private boolean hasMovedWhiteKing;
-    private boolean hasMovedWhiteKingsideRook;
-    private boolean hasMovedWhiteQueensideRook;
+    private boolean hasMovedOrLostWhiteKingsideRook;
+    private boolean hasMovedOrLostWhiteQueensideRook;
 
     private boolean hasMovedBlackKing;
-    private boolean hasMovedBlackKingsideRook;
-    private boolean hasMovedBlackQueensideRook;
+    private boolean hasMovedOrLostBlackKingsideRook;
+    private boolean hasMovedOrLostBlackQueensideRook;
 
     // if >= 100 then either player may declare a draw according to the fifty-move rule
     private int halfMoveClock;
@@ -64,21 +64,38 @@ public class MoveTracker {
         if(Constants.ROOK_WHITE == movingPiece) {
             if(move.getOriginRow() == 7) {
                 if(move.getOriginCol() == 0) {
-                    this.hasMovedWhiteQueensideRook = true;
+                    this.hasMovedOrLostWhiteQueensideRook = true;
                 }
                 else if(move.getOriginCol() == 7) {
-                    this.hasMovedWhiteKingsideRook = true;
+                    this.hasMovedOrLostWhiteKingsideRook = true;
                 }
             }
         }
         else if(Constants.ROOK_BLACK == movingPiece) {
             if(move.getOriginRow() == 0) {
                 if(move.getOriginCol() == 0) {
-                    this.hasMovedBlackQueensideRook = true;
+                    this.hasMovedOrLostBlackQueensideRook = true;
                 }
                 else if(move.getOriginCol() == 7) {
-                    this.hasMovedBlackKingsideRook = true;
+                    this.hasMovedOrLostBlackKingsideRook = true;
                 }
+            }
+        }
+        // DO: do these next two blocks better
+        else if(7 == move.getTargetRow()) {
+            if(0 == move.getTargetCol()) {
+                this.hasMovedOrLostWhiteQueensideRook = true;
+            }
+            else if(7 == move.getTargetCol()) {
+                this.hasMovedOrLostWhiteKingsideRook = true;
+            }
+        }
+        else if(0 == move.getTargetRow()) {
+            if(0 == move.getTargetCol()) {
+                this.hasMovedOrLostBlackQueensideRook = true;
+            }
+            else if(7 == move.getTargetCol()) {
+                this.hasMovedOrLostBlackKingsideRook = true;
             }
         }
         else if(Constants.KING_BLACK == movingPiece) {
@@ -98,24 +115,24 @@ public class MoveTracker {
         return this.hasMovedWhiteKing;
     }
 
-    public boolean hasMovedWhiteKingsideRook() {
-        return this.hasMovedWhiteKingsideRook;
+    public boolean hasMovedOrLostWhiteKingsideRook() {
+        return this.hasMovedOrLostWhiteKingsideRook;
     }
 
-    public boolean hasMovedWhiteQueensideRook() {
-        return this.hasMovedWhiteQueensideRook;
+    public boolean hasMovedOrLostWhiteQueensideRook() {
+        return this.hasMovedOrLostWhiteQueensideRook;
     }
 
     public boolean hasMovedBlackKing() {
         return this.hasMovedBlackKing;
     }
 
-    public boolean hasMovedBlackKingsideRook() {
-        return this.hasMovedBlackKingsideRook;
+    public boolean hasMovedOrLostBlackKingsideRook() {
+        return this.hasMovedOrLostBlackKingsideRook;
     }
 
-    public boolean hasMovedBlackQueensideRook() {
-        return this.hasMovedBlackQueensideRook;
+    public boolean hasMovedOrLostBlackQueensideRook() {
+        return this.hasMovedOrLostBlackQueensideRook;
     }
 
     public int getHalfMoveClock() {
@@ -135,11 +152,11 @@ public class MoveTracker {
                 new MoveTracker(this.whiteToMove, this.halfMoveClock, this.fullMoveNumber);
 
         copy.hasMovedWhiteKing = this.hasMovedWhiteKing;
-        copy.hasMovedWhiteKingsideRook = this.hasMovedWhiteKingsideRook;
-        copy.hasMovedWhiteQueensideRook = this.hasMovedWhiteQueensideRook;
+        copy.hasMovedOrLostWhiteKingsideRook = this.hasMovedOrLostWhiteKingsideRook;
+        copy.hasMovedOrLostWhiteQueensideRook = this.hasMovedOrLostWhiteQueensideRook;
         copy.hasMovedBlackKing = this.hasMovedBlackKing;
-        copy.hasMovedBlackKingsideRook = this.hasMovedBlackKingsideRook;
-        copy.hasMovedBlackQueensideRook = this.hasMovedBlackQueensideRook;
+        copy.hasMovedOrLostBlackKingsideRook = this.hasMovedOrLostBlackKingsideRook;
+        copy.hasMovedOrLostBlackQueensideRook = this.hasMovedOrLostBlackQueensideRook;
 
         copy.movesSoFar = Utils.deepCopy(this.movesSoFar);
 

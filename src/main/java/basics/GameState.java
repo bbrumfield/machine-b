@@ -51,25 +51,25 @@ public final class GameState {
     public boolean whiteIsEligibleToCastleKingside() {
         return this.initialCastlingEligibility.isWhiteKingsideEligible()
                 && !this.moveTracker.hasMovedWhiteKing()
-                && !this.moveTracker.hasMovedWhiteKingsideRook();
+                && !this.moveTracker.hasMovedOrLostWhiteKingsideRook();
     }
 
     public boolean whiteIsEligibleToCastleQueenside() {
         return this.initialCastlingEligibility.isWhiteQueensideEligible()
                 && !this.moveTracker.hasMovedWhiteKing()
-                && !this.moveTracker.hasMovedWhiteQueensideRook();
+                && !this.moveTracker.hasMovedOrLostWhiteQueensideRook();
     }
 
     public boolean blackIsEligibleToCastleKingside() {
         return this.initialCastlingEligibility.isBlackKingsideEligible()
                 && !this.moveTracker.hasMovedBlackKing()
-                && !this.moveTracker.hasMovedBlackKingsideRook();
+                && !this.moveTracker.hasMovedOrLostBlackKingsideRook();
     }
 
     public boolean blackIsEligibleToCastleQueenside() {
         return this.initialCastlingEligibility.isBlackQueensideEligible()
                 && !this.moveTracker.hasMovedBlackKing()
-                && !this.moveTracker.hasMovedBlackQueensideRook();
+                && !this.moveTracker.hasMovedOrLostBlackQueensideRook();
     }
 
     public Square getEnPassantTarget() {
