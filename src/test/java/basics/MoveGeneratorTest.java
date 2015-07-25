@@ -100,6 +100,20 @@ public class MoveGeneratorTest {
         assertEquals(4, legalMoves.size());
     }
 
+    @Test
+    public void getLegalMoves_cannotCastleIfRookHasBeenCaptured() throws UnknownCommandException {
+        String positionCommand = "position fen "
+                + "rnbq1k1r/pp1Pbppp/2p5/8/2B5/8/PPP1NnPP/RNBQK2R w KQ - 1 8"
+                + " moves e2c3 f2h1";
+
+        GameState gameState = Mapper.toGameState(positionCommand);
+        Set<Move> legalMoves = MoveGenerator.getLegalMoves(gameState);
+
+        Move impossibleCastleMove = Mapper.toMove("e1g1");
+
+        assertFalse(legalMoves.contains(impossibleCastleMove));
+    }
+
     // =============================================================================================
     // "perft"s below here (see: https://chessprogramming.wikispaces.com/Perft)
     // =============================================================================================
@@ -201,5 +215,35 @@ public class MoveGeneratorTest {
         }
 
         return numMovesGenerated;
+    }
+
+    // =============================================================================================
+    // exploratory methods below here
+    // =============================================================================================
+
+    private void divide(GameState gameState, int plyDepth) {
+        long nodesSoFar = 0;
+
+        Set<Move> currentLegalMoves = MoveGenerator.getLegalMoves(gameState);
+
+        GameState updatedGameState;
+        int newPlyDepth = plyDepth - 1;
+        long currentNumNodes;
+
+        for(Move currentLegalMove : currentLegalMoves) {
+            updatedGameState = new GameState(gameState, currentLegalMove);
+            currentNumNodes = this.getNumMovesGenerated(updatedGameState, newPlyDepth);
+            nodesSoFar += currentNumNodes;
+
+            System.out.println(
+                    currentLegalMove.toChessMoveString()
+                    + " "
+                    + currentNumNodes);
+        }
+
+        System.out.println("\nnodes summed: " + nodesSoFar);
+        System.out.println("nodes found:  " + this.getNumMovesGenerated(gameState, plyDepth));
+
+        System.out.println("moves: " + this.getNumMovesGenerated(gameState, 1));
     }
 }
