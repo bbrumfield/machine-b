@@ -157,7 +157,7 @@ public class Board {
                 this.pieceAtOriginIs(move, Character.toLowerCase(piece));
     }
 
-    private boolean pieceAtOriginIs(Move move, char piece) {
+    public boolean pieceAtOriginIs(Move move, char piece) {
         return this.pieceAtSquareIs(move.getOriginRow(), move.getOriginCol(), piece);
     }
 

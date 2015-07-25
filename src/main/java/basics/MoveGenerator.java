@@ -142,11 +142,8 @@ public class MoveGenerator {
         Set<Move> readyForPromotions = new HashSet<Move>();
 
         for(Move move : moves) {
-            if(
-            // is white promotion
-            ((move.getTargetRow() == '0') && (board.getPieceAt(move.getOriginRow() - 48, move.getOriginCol() - 48) == 'P'))
-                    // or is black promotion
-                    || ((move.getTargetRow() == '7') && (board.getPieceAt(move.getOriginRow() - 48, move.getOriginCol() - 48) == 'p'))) {
+            if(((move.getTargetRow() == 0) && (board.pieceAtOriginIs(move, PAWN_WHITE)))
+                    || ((move.getTargetRow() == 7) && (board.pieceAtOriginIs(move, PAWN_BLACK)))) {
 
                 readyForPromotions.add(move);
             }
@@ -166,7 +163,7 @@ public class MoveGenerator {
             for(int i = 0; i < pieces.length(); ++i) {
                 char promotedPiece;
 
-                if(promotion.getTargetRow() == '0') /* is white promotion, promote to white piece */{
+                if(promotion.getTargetRow() == 0) /* is white promotion, promote to white piece */{
                     promotedPiece = whitePieces.charAt(i);
                 }
                 else /* is black promotion, promote to black piece */{
@@ -175,6 +172,7 @@ public class MoveGenerator {
 
                 Move copy = promotion.deepCopy();
                 copy.promote(promotedPiece);
+
                 allPossibilities.add(copy);
             }
         }

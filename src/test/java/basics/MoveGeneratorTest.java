@@ -79,6 +79,27 @@ public class MoveGeneratorTest {
         assertFalse(legalMoves.contains(castleQueenside));
     }
 
+    @Test
+    public void getLegalMoves_pawnCanPromoteToFourDifferentPieces() throws UnknownCommandException {
+        String positionCommand = "position fen "
+                + "8/6P1/8/8/8/2k5/1r5r/K7 w - - 0 1";
+
+        GameState gameState = Mapper.toGameState(positionCommand);
+        Set<Move> legalMoves = MoveGenerator.getLegalMoves(gameState);
+
+        Move queenPromotion = Mapper.toMove("g7g8Q");
+        Move rookPromotion = Mapper.toMove("g7g8R");
+        Move bishopPromotion = Mapper.toMove("g7g8B");
+        Move knightPromotion = Mapper.toMove("g7g8N");
+
+        assertTrue(legalMoves.contains(queenPromotion));
+        assertTrue(legalMoves.contains(rookPromotion));
+        assertTrue(legalMoves.contains(bishopPromotion));
+        assertTrue(legalMoves.contains(knightPromotion));
+
+        assertEquals(4, legalMoves.size());
+    }
+
     // =============================================================================================
     // "perft"s below here (see: https://chessprogramming.wikispaces.com/Perft)
     // =============================================================================================
