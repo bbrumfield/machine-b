@@ -18,7 +18,7 @@ public class MovePathEnumerator {
         if(plyDepth < 1) {
             // there must be a mistake, simply return 0
         }
-        if(plyDepth == 1) {
+        else if(plyDepth == 1) {
             numMovesGenerated = currentLegalMoves.size();
         }
         else {
@@ -53,8 +53,8 @@ public class MovePathEnumerator {
 
             System.out.println(
                     currentLegalMove.toChessMoveString()
-                            + " "
-                            + currentNumNodes);
+                    + " "
+                    + currentNumNodes);
         }
 
         System.out.println("\nnodes summed: " + nodesSoFar);
