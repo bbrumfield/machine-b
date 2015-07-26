@@ -15,7 +15,7 @@ public class MovePathEnumeratorTest {
 
     private static final String PATH_TO_PERFT_DIR = "perfts";
 
-    private static final long MAX_NODES_TO_SEARCH_FOR = 100000;
+    private static final long MAX_NODES_TO_SEARCH_FOR = 250000;
 
     @Test
     public void runAllPerfts() throws Exception {
@@ -35,6 +35,8 @@ public class MovePathEnumeratorTest {
                 }
             }
         }
+
+        System.out.println("\nDONE");
     }
 
     private boolean isACommentLine(String line) {
