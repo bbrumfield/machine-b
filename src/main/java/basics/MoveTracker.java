@@ -81,6 +81,12 @@ public class MoveTracker {
                 }
             }
         }
+        else if(Constants.KING_BLACK == movingPiece) {
+            this.hasMovedBlackKing = true;
+        }
+        else if(Constants.KING_WHITE == movingPiece) {
+            this.hasMovedWhiteKing = true;
+        }
         // DO: do these next two blocks better
         else if(7 == move.getTargetRow()) {
             if(0 == move.getTargetCol()) {
@@ -97,12 +103,6 @@ public class MoveTracker {
             else if(7 == move.getTargetCol()) {
                 this.hasMovedOrLostBlackKingsideRook = true;
             }
-        }
-        else if(Constants.KING_BLACK == movingPiece) {
-            this.hasMovedBlackKing = true;
-        }
-        else if(Constants.KING_WHITE == movingPiece) {
-            this.hasMovedWhiteKing = true;
         }
 
     }
