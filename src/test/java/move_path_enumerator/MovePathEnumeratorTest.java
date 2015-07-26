@@ -3,85 +3,53 @@ package move_path_enumerator;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
+import java.util.Scanner;
+
 import org.junit.Test;
 
 import utils.Mapper;
 import basics.GameState;
-import constants.Constants;
-import exceptions.UnknownCommandException;
 
 public class MovePathEnumeratorTest {
 
-    @Test
-    // from start position
-    public void perft01() throws UnknownCommandException {
-        String fen = Constants.FEN_START_POS;
+    private static final String PATH_TO_PERFT_DIR = "perfts";
 
-        this.runPerft(fen, 20, 400, 8902, 197281);
-    }
+    private static final long MAX_NODES_TO_SEARCH_FOR = 100000;
 
     @Test
-    // Position 2 at https://chessprogramming.wikispaces.com/Perft+Results on 2015-07-24
-    public void perft02() throws UnknownCommandException {
-        String fen = "r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1";
+    public void runAllPerfts() throws Exception {
+        File perftDir = new File(PATH_TO_PERFT_DIR);
+        File[] perftFiles = perftDir.listFiles();
+        Scanner perftFileScanner;
+        String currentLine;
 
-        this.runPerft(fen, 48, 2039, 97862);
+        for(File perftFile : perftFiles) {
+            System.out.println("\n\nreading " + perftFile.getAbsolutePath());
+            perftFileScanner = new Scanner(perftFile);
+            while(perftFileScanner.hasNext()) {
+                currentLine = perftFileScanner.nextLine();
+                if(!this.isACommentLine(currentLine)) {
+                    System.out.println("testing " + currentLine);
+                    this.runPerft(currentLine.split(","));
+                }
+            }
+        }
     }
 
-    @Test
-    // Position 3 at https://chessprogramming.wikispaces.com/Perft+Results on 2015-07-24
-    public void perft03() throws UnknownCommandException {
-        String fen = "8/2p5/3p4/KP5r/1R3p1k/8/4P1P1/8 w - - 0 1";
-
-        this.runPerft(fen, 14, 191, 2812, 43238);
+    private boolean isACommentLine(String line) {
+        return (line.charAt(0) == '/') && (line.charAt(1) == '/');
     }
 
-    @Test
-    // Position 4a at https://chessprogramming.wikispaces.com/Perft+Results on 2015-07-24
-    public void perft04a() throws UnknownCommandException {
-        String fen = "r3k2r/Pppp1ppp/1b3nbN/nP6/BBP1P3/q4N2/Pp1P2PP/R2Q1RK1 w kq - 0 1";
+    private void runPerft(String... fenAndNumMovesExpectedAtEachDepth) throws Exception {
+        String fen = fenAndNumMovesExpectedAtEachDepth[0];
+        for(int plyDepth = 1; plyDepth < fenAndNumMovesExpectedAtEachDepth.length; plyDepth++) {
+            long expectedAtDepth = Long.parseLong(fenAndNumMovesExpectedAtEachDepth[plyDepth]);
+            if(expectedAtDepth <= MAX_NODES_TO_SEARCH_FOR) {
+                GameState gameState = Mapper.toGameState("position fen " + fen);
 
-        this.runPerft(fen, 6, 264, 9467);
-    }
-
-    @Test
-    // Position 4b at https://chessprogramming.wikispaces.com/Perft+Results on 2015-07-24
-    public void perft04b() throws UnknownCommandException {
-        String fen = "r2q1rk1/pP1p2pp/Q4n2/bbp1p3/Np6/1B3NBn/pPPP1PPP/R3K2R b KQ - 0 1";
-
-        this.runPerft(fen, 6, 264, 9467);
-    }
-
-    @Test
-    // Position 5 at https://chessprogramming.wikispaces.com/Perft+Results on 2015-07-24
-    public void perft05() throws UnknownCommandException {
-        String fen = "rnbq1k1r/pp1Pbppp/2p5/8/2B5/8/PPP1NnPP/RNBQK2R w KQ - 1 8";
-
-        this.runPerft(fen, 44, 1486, 62379);
-    }
-
-    @Test
-    // Position 6 at https://chessprogramming.wikispaces.com/Perft+Results on 2015-07-24
-    public void perft06() throws UnknownCommandException {
-        String fen = "r4rk1/1pp1qppp/p1np1n2/2b1p1B1/2B1P1b1/P1NP1N2/1PP1QPPP/R4RK1 w - - 0 10";
-
-        this.runPerft(fen, 46, 2079, 89890);
-    }
-
-    // =============================================================================================
-    // helper methods below here
-    // =============================================================================================
-
-    private void runPerft(String fen, long... numMovesExpectedAtEachDepth)
-            throws UnknownCommandException {
-        GameState gameState = Mapper.toGameState("position fen " + fen);
-
-        this.checkExpect(gameState, numMovesExpectedAtEachDepth);
-    }
-
-    private void checkExpect(GameState gameState, long... numMovesExpectedAtEachDepth) {
-        for(int plyDepth = 1; plyDepth <= numMovesExpectedAtEachDepth.length; plyDepth++) {
-            this.checkExpect(gameState, plyDepth, numMovesExpectedAtEachDepth[plyDepth - 1]);
+                this.checkExpect(gameState, plyDepth, expectedAtDepth);
+            }
         }
     }
 
