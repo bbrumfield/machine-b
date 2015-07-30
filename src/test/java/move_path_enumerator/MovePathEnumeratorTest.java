@@ -13,29 +13,26 @@ import basics.GameState;
 
 public class MovePathEnumeratorTest {
 
-    private static final String PATH_TO_PERFT_DIR = "perfts";
+    private static final String PATH_TO_PERFT_FILE = "perfts.txt";
 
     private static final long MAX_NODES_TO_SEARCH_FOR = 250000;
 
     @Test
     public void runAllPerfts() throws Exception {
-        File perftDir = new File(PATH_TO_PERFT_DIR);
-        File[] perftFiles = perftDir.listFiles();
-        Scanner perftFileScanner;
+        File perftFile = new File(PATH_TO_PERFT_FILE);
+
+        Scanner perftFileScanner = new Scanner(perftFile);
         String currentLine;
 
-        for(File perftFile : perftFiles) {
-            System.out.println("\n\nreading " + perftFile.getAbsolutePath());
-            perftFileScanner = new Scanner(perftFile);
-            while(perftFileScanner.hasNext()) {
-                currentLine = perftFileScanner.nextLine();
-                if(!this.isACommentLine(currentLine)) {
-                    System.out.println("testing " + currentLine);
-                    this.runPerft(currentLine.split(","));
-                }
+        while(perftFileScanner.hasNext()) {
+            currentLine = perftFileScanner.nextLine();
+            if(!this.isACommentLine(currentLine)) {
+                System.out.println("testing " + currentLine);
+                this.runPerft(currentLine.split(","));
             }
         }
 
+        perftFileScanner.close();
         System.out.println("\nDONE");
     }
 
