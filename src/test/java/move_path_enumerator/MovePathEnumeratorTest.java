@@ -15,7 +15,7 @@ public class MovePathEnumeratorTest {
 
     private static final String PATH_TO_PERFT_FILE = "perfts.txt";
 
-    private static final long MAX_NODES_TO_SEARCH_FOR = 250000;
+    private static final long MAX_NODES_TO_SEARCH_FOR = 200000;
 
     @Test
     public void runAllPerfts() throws Exception {
@@ -27,13 +27,13 @@ public class MovePathEnumeratorTest {
         while(perftFileScanner.hasNext()) {
             currentLine = perftFileScanner.nextLine();
             if(!this.isACommentLine(currentLine)) {
-                System.out.println("testing " + currentLine);
+                System.out.print("\ntesting " + currentLine.split(",")[0]);
                 this.runPerft(currentLine.split(","));
             }
         }
 
         perftFileScanner.close();
-        System.out.println("\nDONE");
+        System.out.println("\n\nDONE");
     }
 
     private boolean isACommentLine(String line) {
@@ -46,7 +46,7 @@ public class MovePathEnumeratorTest {
             long expectedAtDepth = Long.parseLong(fenAndNumMovesExpectedAtEachDepth[plyDepth]);
             if(expectedAtDepth <= MAX_NODES_TO_SEARCH_FOR) {
                 GameState gameState = Mapper.toGameState("position fen " + fen);
-
+                System.out.print(" [" + plyDepth + ":" + expectedAtDepth + "]");
                 this.checkExpect(gameState, plyDepth, expectedAtDepth);
             }
         }
