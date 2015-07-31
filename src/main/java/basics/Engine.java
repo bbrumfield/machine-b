@@ -17,6 +17,10 @@ public class Engine {
         gameState = gState;
     }
 
+    public static GameState getGameState() {
+        return gameState;
+    }
+
     public static Move getBestMove() {
         mind = new Mind(gameState);
         return mind.getBestMoveSoFar();
