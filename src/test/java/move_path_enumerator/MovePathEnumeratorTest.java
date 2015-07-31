@@ -55,6 +55,8 @@ public class MovePathEnumeratorTest {
     private void checkExpect(GameState gameState, int plyDepth, long numMovesExpected) {
         long numMovesGenerated = MovePathEnumerator.perft(gameState, plyDepth).getNumNodes();
 
-        assertEquals(numMovesExpected, numMovesGenerated);
+        assertEquals(
+                "[Fen: " + gameState.toFenString() + "][Depth: " + plyDepth + "]",
+                numMovesExpected, numMovesGenerated);
     }
 }
