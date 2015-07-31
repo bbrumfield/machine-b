@@ -113,4 +113,16 @@ public class MoveGeneratorTest {
 
         assertFalse(legalMoves.contains(impossibleCastleMove));
     }
+
+    @Test
+    public void getLegalMoves_shouldReturnZeroMoves_ifSideToMoveIsInMate()
+            throws UnknownCommandException {
+        String positionCommand = "position fen "
+                + "8/8/8/8/8/5K2/6Q1/7k b - - 100 1";
+
+        GameState gameState = Mapper.toGameState(positionCommand);
+        Set<Move> legalMoves = MoveGenerator.getLegalMoves(gameState);
+
+        assertEquals(0, legalMoves.size());
+    }
 }
