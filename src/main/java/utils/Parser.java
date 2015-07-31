@@ -45,4 +45,28 @@ public class Parser {
         return moves;
     }
 
+    public static int parseDividePlyDepth(String divideCommand) throws UnknownCommandException {
+        return parsePlyDepth(divideCommand, "divide");
+    }
+
+    public static int parsePerftPlyDepth(String perftCommand) throws UnknownCommandException {
+        return parsePlyDepth(perftCommand, "perft");
+    }
+
+    private static int parsePlyDepth(String command, String expectedFirstToken)
+            throws UnknownCommandException {
+        String[] tokens = command.split(" ");
+
+        if((tokens.length < 2) || !tokens[0].equals(expectedFirstToken)) {
+            throw new UnknownCommandException("Unkown command: " + command);
+        }
+
+        try {
+            return Integer.parseInt(tokens[1]);
+        }
+        catch(NumberFormatException e) {
+            throw new UnknownCommandException(tokens[1] + " is not a valid ply depth.");
+        }
+    }
+
 }

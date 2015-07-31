@@ -3,7 +3,9 @@ package uci;
 
 import java.util.Scanner;
 
+import move_path_enumerator.MovePathEnumerator;
 import utils.Mapper;
+import utils.Parser;
 import basics.Engine;
 import exceptions.UnknownCommandException;
 
@@ -21,7 +23,7 @@ public class Uci {
         scan.close();
     }
 
-    /* default (for testing purposes) */static void processCommand(String command) {
+    static void processCommand(String command) {
         // DO: reorder based on frequency of calls
         try {
             if(command.equals("quit")) {
@@ -57,6 +59,12 @@ public class Uci {
             else if(command.startsWith("ponderhit")) {
                 in_ponderhit();
             }
+            else if(command.startsWith("divide ")) {
+                in_divide(command);
+            }
+            else if(command.startsWith("perft ")) {
+                in_perft(command);
+            }
             else {
                 throw new UnknownCommandException();
             }
@@ -86,11 +94,11 @@ public class Uci {
         out_readyok();
     }
 
-    private static void in_setoption(String command) {
+    private static void in_setoption(String setoptionCommand) {
         // currently not supported
     }
 
-    private static void in_register(String command) {
+    private static void in_register(String registerCommand) {
         // currently not supported
     }
 
@@ -98,11 +106,11 @@ public class Uci {
         // currently not supported
     }
 
-    private static void in_position(String command) throws UnknownCommandException {
-        Engine.setGameState(Mapper.toGameState(command));
+    private static void in_position(String positionCommand) throws UnknownCommandException {
+        Engine.setGameState(Mapper.toGameState(positionCommand));
     }
 
-    private static void in_go(String command) {
+    private static void in_go(String goCommand) {
         out_bestmove();
     }
 
@@ -116,6 +124,14 @@ public class Uci {
 
     private static void in_quit() {
         userHasQuit = true;
+    }
+
+    private static void in_divide(String divideCommand) throws UnknownCommandException {
+        out_divide(Parser.parseDividePlyDepth(divideCommand));
+    }
+
+    private static void in_perft(String perftCommand) throws UnknownCommandException {
+        out_perft(Parser.parsePerftPlyDepth(perftCommand));
     }
 
     // =============================================================================================
@@ -155,7 +171,15 @@ public class Uci {
         // currently not supported
     }
 
+    private static void out_divide(int plyDepth) {
+        respond(MovePathEnumerator.divide(Engine.getGameState(), plyDepth));
+    }
+
+    private static void out_perft(int plyDepth) {
+        respond(MovePathEnumerator.perft(Engine.getGameState(), plyDepth).toString());
+    }
+
     private static void respond(String response) {
-        System.out.println(response);
+        System.out.println(response + "\n");
     }
 }
