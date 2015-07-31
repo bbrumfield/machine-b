@@ -1,6 +1,7 @@
 
 package utils;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +50,10 @@ public class Utils {
         }
 
         return copy;
+    }
+
+    public static String format(long number) {
+        return NumberFormat.getInstance().format(number);
     }
 
 }

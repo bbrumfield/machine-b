@@ -1,6 +1,7 @@
 
 package move_path_enumerator;
 
+import utils.Utils;
 import basics.GameState;
 
 public class PerftResult {
@@ -48,7 +49,8 @@ public class PerftResult {
 
     @Override
     public String toString() {
-        return "nodes: " + this.getNumNodes() + "\nnanos: " + this.getDurationInNanoseconds();
+        return "nodes: " + Utils.format(this.getNumNodes())
+                + "\nnanos: " + Utils.format(this.getDurationInNanoseconds());
     }
 
 }

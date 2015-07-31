@@ -3,6 +3,7 @@ package move_path_enumerator;
 
 import java.util.Set;
 
+import utils.Utils;
 import basics.GameState;
 import basics.Move;
 import basics.MoveGenerator;
@@ -37,13 +38,13 @@ public class MovePathEnumerator {
 
             sb.append(currentLegalMove.toChessMoveString());
             sb.append(" ");
-            sb.append(currentNumNodes);
+            sb.append(Utils.format(currentNumNodes));
             sb.append("\n");
         }
 
-        sb.append("moves: ").append(currentLegalMoves.size());
+        sb.append("moves: ").append(Utils.format(currentLegalMoves.size()));
         sb.append("\n");
-        sb.append("nodes: ").append(nodesSoFar);
+        sb.append("nodes: ").append(Utils.format(nodesSoFar));
 
         return sb.toString();
     }
