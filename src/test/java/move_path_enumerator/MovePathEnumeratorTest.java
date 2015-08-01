@@ -13,7 +13,8 @@ import basics.GameState;
 
 public class MovePathEnumeratorTest {
 
-    private static final String PATH_TO_PERFT_FILE = "perfts.txt";
+    private static final String PATH_TO_PERFT_FILE =
+            "src\\test\\java\\move_path_enumerator\\perfts.txt";
 
     private static final long MAX_NODES_TO_SEARCH_FOR = 200000;
 
