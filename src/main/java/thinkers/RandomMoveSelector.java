@@ -11,32 +11,29 @@ import thinking_components.Mind;
 import thinking_components.ThoughtProcess;
 import basics.GameState;
 import basics.Move;
-import basics.MoveGenerator;
 
 public class RandomMoveSelector extends ThoughtProcess {
 
-    public RandomMoveSelector(Mind observer, GameState gameState, int levelsToSearch) {
-        super(observer, gameState, levelsToSearch);
+    public RandomMoveSelector(Mind observer, GameState gameState, int plyDepthToSearch) {
+        super(observer, gameState, plyDepthToSearch);
+    }
+
+    public RandomMoveSelector(
+            Mind observer,
+            GameState gameState,
+            int plyDepthToSearch,
+            Set<Move> movesToConsider) {
+        super(observer, gameState, plyDepthToSearch, movesToConsider);
     }
 
     @Override
     public void searchAndEvaluate() {
-        Set<Move> legalMoves = MoveGenerator.getLegalMoves(this.gameState);
-
-        System.out.println("\n" + this.gameState.getBoard().toChessBoardString() + "\n");
-
-        System.out.print("possible moves:");
-        for(Move move : legalMoves) {
-            System.out.print(" " + move.toChessMoveString());
-        }
-        System.out.println();
-
         java.util.Random randy = new java.util.Random();
-        int randomIndex = randy.nextInt(legalMoves.size());
+        int randomIndex = randy.nextInt(this.movesToConsider.size());
 
         List<Move> bestLine = new ArrayList<Move>();
 
-        Iterator<Move> it = legalMoves.iterator();
+        Iterator<Move> it = this.movesToConsider.iterator();
         for(int i = 0; i < randomIndex; i++) {
             it.next();
         }

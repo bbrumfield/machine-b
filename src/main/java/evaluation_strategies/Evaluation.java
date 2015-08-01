@@ -1,5 +1,5 @@
-package evaluation_strategies;
 
+package evaluation_strategies;
 
 public class Evaluation {
 

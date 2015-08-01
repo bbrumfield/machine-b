@@ -31,8 +31,8 @@ public abstract class ThoughtProcess extends Observable implements Runnable {
         this.movesToConsider = movesToConsider;
     }
 
-    public ThoughtProcess(Mind observer, GameState gameState, int halfMoveLevelsToSearch) {
-        this(observer, gameState, halfMoveLevelsToSearch, MoveGenerator.getLegalMoves(gameState));
+    public ThoughtProcess(Mind observer, GameState gameState, int plyDepthToSearch) {
+        this(observer, gameState, plyDepthToSearch, MoveGenerator.getLegalMoves(gameState));
     }
 
     public abstract void searchAndEvaluate();
