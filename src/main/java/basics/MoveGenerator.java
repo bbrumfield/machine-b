@@ -156,18 +156,18 @@ public class MoveGenerator {
         Set<Move> allPossibilities = new HashSet<Move>();
 
         String pieces = "RNBQ"; // DO: use the constants in Constants
-        String whitePieces = pieces.toUpperCase();
-        String blackPieces = pieces.toLowerCase();
+        String whitePromotionPieces = pieces.toUpperCase();
+        String blackPromotionPieces = pieces.toLowerCase();
 
         for(Move promotion : promotions) {
             for(int i = 0; i < pieces.length(); ++i) {
                 char promotedPiece;
 
                 if(promotion.getTargetRow() == 0) /* is white promotion, promote to white piece */{
-                    promotedPiece = whitePieces.charAt(i);
+                    promotedPiece = whitePromotionPieces.charAt(i);
                 }
                 else /* is black promotion, promote to black piece */{
-                    promotedPiece = blackPieces.charAt(i);
+                    promotedPiece = blackPromotionPieces.charAt(i);
                 }
 
                 Move copy = promotion.deepCopy();

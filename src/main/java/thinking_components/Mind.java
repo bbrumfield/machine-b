@@ -5,7 +5,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Set;
 
-import thinkers_rename.Random;
+import thinkers.RandomMoveSelector;
 import basics.GameState;
 import basics.Move;
 
@@ -19,7 +19,7 @@ public class Mind implements Observer {
 
     public Mind(GameState gameState) {
         this.gameState = gameState;
-        ThoughtProcess randy = new Random(this, this.gameState, 0);
+        ThoughtProcess randy = new RandomMoveSelector(this, this.gameState, 0);
 
         (new Thread(randy)).start();
     }

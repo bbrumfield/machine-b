@@ -1,5 +1,5 @@
 
-package thinkers_rename;
+package thinkers;
 
 import java.util.Set;
 
@@ -20,8 +20,6 @@ public class OpponentMoveCountMinimizer extends ThoughtProcess {
         Set<Move> legalMoves = MoveGenerator.getLegalMoves(this.gameState);
 
         // DO: implement
-        // 1) find the move that will minimize the number of moves the opponent can choose from
-        // 2) if there is a tie, use Random to help choose bestmove from among those tied
     }
 
 }

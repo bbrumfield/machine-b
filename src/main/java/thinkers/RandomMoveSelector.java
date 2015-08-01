@@ -1,5 +1,5 @@
 
-package thinkers_rename;
+package thinkers;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -13,9 +13,9 @@ import basics.GameState;
 import basics.Move;
 import basics.MoveGenerator;
 
-public class Random extends ThoughtProcess {
+public class RandomMoveSelector extends ThoughtProcess {
 
-    public Random(Mind observer, GameState gameState, int levelsToSearch) {
+    public RandomMoveSelector(Mind observer, GameState gameState, int levelsToSearch) {
         super(observer, gameState, levelsToSearch);
     }
 
