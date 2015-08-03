@@ -25,8 +25,8 @@ Additional commands that have been implemented
 
 
 
-UCI commands that are not yet implemented
------------------------------------------
+UCI commands that have not yet been implemented
+-----------------------------------------------
 * debug
 * setoption
 * register
