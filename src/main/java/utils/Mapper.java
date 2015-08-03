@@ -15,6 +15,12 @@ import exceptions.UnknownCommandException;
 
 public class Mapper {
 
+    /**
+     * Converts a valid UCI position command to a GameState object.
+     *
+     * @throws UnknownCommandException
+     *             If the given string is a malformed UCI position command.
+     */
     public static GameState toGameState(String positionCommand) throws UnknownCommandException {
         PositionCommand pCommand = new PositionCommand(positionCommand);
 
@@ -107,9 +113,15 @@ public class Mapper {
         return moveList;
     }
 
-    // DO: exception check?
-    // DO: fix up this comment
-    // converts a String (like "e2e4") to a Move object
+    /**
+     * Converts a String to a {@link Move} object.
+     *
+     * @param chessMove
+     *            Must represent a valid chess move in either form "e2e4" or "a2a1q". 'Valid' in
+     *            this context simply means that the squares indicated should exist within the
+     *            bounds of a standard chess board and any promoted piece must be for a queen, rook,
+     *            bishop, or knight.
+     */
     public static Move toMove(String chessMove) {
         int fromRank = chessMove.charAt(1) - 48;
         char fromFile = chessMove.charAt(0);
