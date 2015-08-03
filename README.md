@@ -10,7 +10,7 @@ Commands that have been implemented
 * uci
 * isready
 * ucinewgame
-* position [fen  | startpos ]  [moves  <move1> <move2> ...]
+* position [fen  | startpos ]  [moves ...]
 * go
 * quit
 
@@ -19,8 +19,8 @@ Commands that have been implemented
 
 Additional commands that have been implemented
 -----------------------------------------------
-* divide <ply depth>
-* perft <ply depth>
+* divide [ply depth]
+* perft [ply depth]
 
 
 
