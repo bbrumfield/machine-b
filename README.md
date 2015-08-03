@@ -10,7 +10,7 @@ Commands that have been implemented
 * uci
 * isready
 * ucinewgame
-* position [fen  | startpos ]  [moves ...]
+* position [fen (fenstring) | startpos] [moves move1 (move2 move3 ...)]
 * go
 * quit
 
