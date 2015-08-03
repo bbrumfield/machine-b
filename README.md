@@ -5,8 +5,8 @@ MachineB is a UCI-compatible chess engine. It is currently coded in a fashion th
 
 
 
-Commands that have been implemented
-------------------------------------
+UCI commands that have been implemented
+---------------------------------------
 * uci
 * isready
 * ucinewgame
@@ -18,15 +18,15 @@ Commands that have been implemented
 
 
 Additional commands that have been implemented
------------------------------------------------
+----------------------------------------------
 * divide [ply depth]
 * perft [ply depth]
 
 
 
 
-Commands that are not yet implemented
---------------------------------------
+UCI commands that are not yet implemented
+-----------------------------------------
 * debug
 * setoption
 * register
