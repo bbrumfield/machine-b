@@ -24,10 +24,15 @@ public class Uci {
     }
 
     static void processCommand(String command) {
-        // DO: reorder based on frequency of calls
         try {
-            if(command.equals("quit")) {
-                in_quit();
+            if(command.startsWith("go")) {
+                in_go(command);
+            }
+            else if(command.equals("stop")) {
+                in_stop();
+            }
+            else if(command.startsWith("position")) {
+                in_position(command);
             }
             else if(command.equals("uci")) {
                 in_uci();
@@ -47,15 +52,6 @@ public class Uci {
             else if(command.equals("ucinewgame")) {
                 in_ucinewgame();
             }
-            else if(command.startsWith("position")) {
-                in_position(command);
-            }
-            else if(command.startsWith("go")) {
-                in_go(command);
-            }
-            else if(command.equals("stop")) {
-                in_stop();
-            }
             else if(command.startsWith("ponderhit")) {
                 in_ponderhit();
             }
@@ -64,6 +60,9 @@ public class Uci {
             }
             else if(command.startsWith("perft ")) {
                 in_perft(command);
+            }
+            else if(command.equals("quit")) {
+                in_quit();
             }
             else {
                 throw new UnknownCommandException();
