@@ -183,10 +183,10 @@ public class MoveGenerator {
     private static Set<Move> getFundamentalRookMoves(GameState state, int row, int col) {
         Set<Move> moves = new HashSet<Move>();
 
-        moves.addAll(getLegalLongDistanceMovesInOneDirection(state, row, col, 1, 0));
-        moves.addAll(getLegalLongDistanceMovesInOneDirection(state, row, col, -1, 0));
-        moves.addAll(getLegalLongDistanceMovesInOneDirection(state, row, col, 0, 1));
-        moves.addAll(getLegalLongDistanceMovesInOneDirection(state, row, col, 0, -1));
+        moves.addAll(getLongDistanceMovesInOneDirection(state, row, col, 1, 0));
+        moves.addAll(getLongDistanceMovesInOneDirection(state, row, col, -1, 0));
+        moves.addAll(getLongDistanceMovesInOneDirection(state, row, col, 0, 1));
+        moves.addAll(getLongDistanceMovesInOneDirection(state, row, col, 0, -1));
 
         return moves;
     }
@@ -194,10 +194,10 @@ public class MoveGenerator {
     private static Set<Move> getFundamentalBishopMoves(GameState state, int row, int col) {
         Set<Move> moves = new HashSet<Move>();
 
-        moves.addAll(getLegalLongDistanceMovesInOneDirection(state, row, col, 1, 1));
-        moves.addAll(getLegalLongDistanceMovesInOneDirection(state, row, col, -1, 1));
-        moves.addAll(getLegalLongDistanceMovesInOneDirection(state, row, col, 1, -1));
-        moves.addAll(getLegalLongDistanceMovesInOneDirection(state, row, col, -1, -1));
+        moves.addAll(getLongDistanceMovesInOneDirection(state, row, col, 1, 1));
+        moves.addAll(getLongDistanceMovesInOneDirection(state, row, col, -1, 1));
+        moves.addAll(getLongDistanceMovesInOneDirection(state, row, col, 1, -1));
+        moves.addAll(getLongDistanceMovesInOneDirection(state, row, col, -1, -1));
 
         return moves;
     }
@@ -211,7 +211,7 @@ public class MoveGenerator {
         return moves;
     }
 
-    private static Set<Move> getLegalLongDistanceMovesInOneDirection(
+    private static Set<Move> getLongDistanceMovesInOneDirection(
             GameState state, int startRow, int startCol, int rowDirection, int colDirection) {
         Board board = state.getBoard();
 

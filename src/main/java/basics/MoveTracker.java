@@ -87,7 +87,6 @@ public class MoveTracker {
         else if(Constants.WHITE_KING == movingPiece) {
             this.hasMovedWhiteKing = true;
         }
-        // DO: do these next two blocks better
         else if(7 == move.getTargetRow()) {
             if(0 == move.getTargetCol()) {
                 this.hasMovedOrLostWhiteQueensideRook = true;
