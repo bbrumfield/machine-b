@@ -2,10 +2,10 @@
 package basics;
 
 import static constants.Constants.EMPTY_PIECE;
-import static constants.Constants.KING_WHITE;
-import static constants.Constants.PAWN_WHITE;
-import static constants.Constants.PIECES_BLACK;
-import static constants.Constants.PIECES_WHITE;
+import static constants.Constants.WHITE_KING;
+import static constants.Constants.WHITE_PAWN;
+import static constants.Constants.BLACK_PIECES;
+import static constants.Constants.WHITE_PIECES;
 
 import java.util.Arrays;
 
@@ -135,10 +135,10 @@ public class Board {
     }
 
     private static boolean piecesAreOfOpposingColors(char pieceA, char pieceB) {
-        boolean aIsWhite = PIECES_WHITE.contains(pieceA);
-        boolean bIsWhite = PIECES_WHITE.contains(pieceB);
-        boolean aIsBlack = PIECES_BLACK.contains(pieceA);
-        boolean bIsBlack = PIECES_BLACK.contains(pieceB);
+        boolean aIsWhite = WHITE_PIECES.contains(pieceA);
+        boolean bIsWhite = WHITE_PIECES.contains(pieceB);
+        boolean aIsBlack = BLACK_PIECES.contains(pieceA);
+        boolean bIsBlack = BLACK_PIECES.contains(pieceB);
 
         return (aIsWhite && bIsBlack) || (aIsBlack && bIsWhite);
     }
@@ -166,11 +166,11 @@ public class Board {
     }
 
     public boolean isPawnMove(Move proposedMove) {
-        return this.movingPieceIsIgnoreColor(proposedMove, PAWN_WHITE);
+        return this.movingPieceIsIgnoreColor(proposedMove, WHITE_PAWN);
     }
 
     private boolean isKingMove(Move proposedMove) {
-        return this.movingPieceIsIgnoreColor(proposedMove, KING_WHITE);
+        return this.movingPieceIsIgnoreColor(proposedMove, WHITE_KING);
     }
 
     private boolean movingPieceIsIgnoreColor(Move proposedMove, char piece) {

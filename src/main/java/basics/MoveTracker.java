@@ -61,7 +61,7 @@ public class MoveTracker {
     private void checkIfKingOrRookHasMoved(Board board, Move move) {
         char movingPiece = board.getPieceAt(move.getOriginRow(), move.getOriginCol());
 
-        if(Constants.ROOK_WHITE == movingPiece) {
+        if(Constants.WHITE_ROOK == movingPiece) {
             if(move.getOriginRow() == 7) {
                 if(move.getOriginCol() == 0) {
                     this.hasMovedOrLostWhiteQueensideRook = true;
@@ -71,7 +71,7 @@ public class MoveTracker {
                 }
             }
         }
-        else if(Constants.ROOK_BLACK == movingPiece) {
+        else if(Constants.BLACK_ROOK == movingPiece) {
             if(move.getOriginRow() == 0) {
                 if(move.getOriginCol() == 0) {
                     this.hasMovedOrLostBlackQueensideRook = true;
@@ -81,10 +81,10 @@ public class MoveTracker {
                 }
             }
         }
-        else if(Constants.KING_BLACK == movingPiece) {
+        else if(Constants.BLACK_KING == movingPiece) {
             this.hasMovedBlackKing = true;
         }
-        else if(Constants.KING_WHITE == movingPiece) {
+        else if(Constants.WHITE_KING == movingPiece) {
             this.hasMovedWhiteKing = true;
         }
         // DO: do these next two blocks better

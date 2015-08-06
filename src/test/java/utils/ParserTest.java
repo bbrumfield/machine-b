@@ -18,7 +18,7 @@ public class ParserTest {
         String positionCommand = "position startpos";
 
         String actual = Parser.parseFen(positionCommand);
-        String expect = Constants.FEN_START_POS;
+        String expect = Constants.START_POSITION_FEN;
 
         assertEquals(expect, actual);
     }
@@ -28,7 +28,7 @@ public class ParserTest {
         String positionCommand = "position startpos moves e2e4 e7e5";
 
         String actual = Parser.parseFen(positionCommand);
-        String expect = Constants.FEN_START_POS;
+        String expect = Constants.START_POSITION_FEN;
 
         assertEquals(expect, actual);
     }

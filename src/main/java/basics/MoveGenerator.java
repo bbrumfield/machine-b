@@ -1,18 +1,18 @@
 
 package basics;
 
-import static constants.Constants.BISHOP_BLACK;
-import static constants.Constants.BISHOP_WHITE;
-import static constants.Constants.KING_BLACK;
-import static constants.Constants.KING_WHITE;
-import static constants.Constants.KNIGHT_BLACK;
-import static constants.Constants.KNIGHT_WHITE;
-import static constants.Constants.PAWN_BLACK;
-import static constants.Constants.PAWN_WHITE;
-import static constants.Constants.QUEEN_BLACK;
-import static constants.Constants.QUEEN_WHITE;
-import static constants.Constants.ROOK_BLACK;
-import static constants.Constants.ROOK_WHITE;
+import static constants.Constants.BLACK_BISHOP;
+import static constants.Constants.WHITE_BISHOP;
+import static constants.Constants.BLACK_KING;
+import static constants.Constants.WHITE_KING;
+import static constants.Constants.BLACK_KNIGHT;
+import static constants.Constants.WHITE_KNIGHT;
+import static constants.Constants.BLACK_PAWN;
+import static constants.Constants.WHITE_PAWN;
+import static constants.Constants.BLACK_QUEEN;
+import static constants.Constants.WHITE_QUEEN;
+import static constants.Constants.BLACK_ROOK;
+import static constants.Constants.WHITE_ROOK;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -37,42 +37,42 @@ public class MoveGenerator {
                 piece = board.getPieceAt(row, col);
 
                 if(gameState.isWhiteToMove()) {
-                    if(piece == PAWN_WHITE) {
+                    if(piece == WHITE_PAWN) {
                         legalMoves.addAll(getFundamentalPawnMoves(gameState, row, col, -1));
                     }
-                    else if(piece == ROOK_WHITE) {
+                    else if(piece == WHITE_ROOK) {
                         legalMoves.addAll(getFundamentalRookMoves(gameState, row, col));
                     }
-                    else if(piece == KNIGHT_WHITE) {
+                    else if(piece == WHITE_KNIGHT) {
                         legalMoves.addAll(getFundamentalKnightMoves(gameState, row, col));
                     }
-                    else if(piece == BISHOP_WHITE) {
+                    else if(piece == WHITE_BISHOP) {
                         legalMoves.addAll(getFundamentalBishopMoves(gameState, row, col));
                     }
-                    else if(piece == QUEEN_WHITE) {
+                    else if(piece == WHITE_QUEEN) {
                         legalMoves.addAll(getFundamentalQueenMoves(gameState, row, col));
                     }
-                    else if(piece == KING_WHITE) {
+                    else if(piece == WHITE_KING) {
                         legalMoves.addAll(getFundamentalKingMoves(gameState, row, col));
                     }
                 }
                 else { // black to move
-                    if(piece == PAWN_BLACK) {
+                    if(piece == BLACK_PAWN) {
                         legalMoves.addAll(getFundamentalPawnMoves(gameState, row, col, 1));
                     }
-                    else if(piece == ROOK_BLACK) {
+                    else if(piece == BLACK_ROOK) {
                         legalMoves.addAll(getFundamentalRookMoves(gameState, row, col));
                     }
-                    else if(piece == KNIGHT_BLACK) {
+                    else if(piece == BLACK_KNIGHT) {
                         legalMoves.addAll(getFundamentalKnightMoves(gameState, row, col));
                     }
-                    else if(piece == BISHOP_BLACK) {
+                    else if(piece == BLACK_BISHOP) {
                         legalMoves.addAll(getFundamentalBishopMoves(gameState, row, col));
                     }
-                    else if(piece == QUEEN_BLACK) {
+                    else if(piece == BLACK_QUEEN) {
                         legalMoves.addAll(getFundamentalQueenMoves(gameState, row, col));
                     }
-                    else if(piece == KING_BLACK) {
+                    else if(piece == BLACK_KING) {
                         legalMoves.addAll(getFundamentalKingMoves(gameState, row, col));
                     }
                 }
@@ -142,8 +142,8 @@ public class MoveGenerator {
         Set<Move> readyForPromotions = new HashSet<Move>();
 
         for(Move move : moves) {
-            if(((move.getTargetRow() == 0) && (board.pieceAtOriginIs(move, PAWN_WHITE)))
-                    || ((move.getTargetRow() == 7) && (board.pieceAtOriginIs(move, PAWN_BLACK)))) {
+            if(((move.getTargetRow() == 0) && (board.pieceAtOriginIs(move, WHITE_PAWN)))
+                    || ((move.getTargetRow() == 7) && (board.pieceAtOriginIs(move, BLACK_PAWN)))) {
 
                 readyForPromotions.add(move);
             }
@@ -380,7 +380,7 @@ public class MoveGenerator {
     }
 
     private static boolean canCaptureKing(Board board, Move move) {
-        boolean targetSquareIsOccupiedByKing = board.pieceAtTargetIsIgnoreColor(move, KING_WHITE);
+        boolean targetSquareIsOccupiedByKing = board.pieceAtTargetIsIgnoreColor(move, WHITE_KING);
 
         return targetSquareIsOccupiedByKing && board.squaresOfMoveAreOccupiedByOpposingPieces(move);
     }

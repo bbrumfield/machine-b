@@ -11,49 +11,49 @@ public class Constants {
     public static final int NUM_COLS = 8;
 
     // pieces
-    public static final char KING_WHITE = 'K';
-    public static final char KING_BLACK = 'k';
+    public static final char WHITE_KING = 'K';
+    public static final char BLACK_KING = 'k';
 
-    public static final char QUEEN_WHITE = 'Q';
-    public static final char QUEEN_BLACK = 'q';
+    public static final char WHITE_QUEEN = 'Q';
+    public static final char BLACK_QUEEN = 'q';
 
-    public static final char BISHOP_WHITE = 'B';
-    public static final char BISHOP_BLACK = 'b';
+    public static final char WHITE_BISHOP = 'B';
+    public static final char BLACK_BISHOP = 'b';
 
-    public static final char KNIGHT_WHITE = 'N';
-    public static final char KNIGHT_BLACK = 'n';
+    public static final char WHITE_KNIGHT = 'N';
+    public static final char BLACK_KNIGHT = 'n';
 
-    public static final char ROOK_WHITE = 'R';
-    public static final char ROOK_BLACK = 'r';
+    public static final char WHITE_ROOK = 'R';
+    public static final char BLACK_ROOK = 'r';
 
-    public static final char PAWN_WHITE = 'P';
-    public static final char PAWN_BLACK = 'p';
+    public static final char WHITE_PAWN = 'P';
+    public static final char BLACK_PAWN = 'p';
 
     public static final char EMPTY_PIECE = ' ';
 
     // collections of pieces
-    public static final Set<Character> PIECES_WHITE = new HashSet<Character>();
+    public static final Set<Character> WHITE_PIECES = new HashSet<Character>();
     static {
-        PIECES_WHITE.add(KING_WHITE);
-        PIECES_WHITE.add(QUEEN_WHITE);
-        PIECES_WHITE.add(BISHOP_WHITE);
-        PIECES_WHITE.add(KNIGHT_WHITE);
-        PIECES_WHITE.add(ROOK_WHITE);
-        PIECES_WHITE.add(PAWN_WHITE);
+        WHITE_PIECES.add(WHITE_KING);
+        WHITE_PIECES.add(WHITE_QUEEN);
+        WHITE_PIECES.add(WHITE_BISHOP);
+        WHITE_PIECES.add(WHITE_KNIGHT);
+        WHITE_PIECES.add(WHITE_ROOK);
+        WHITE_PIECES.add(WHITE_PAWN);
     }
 
-    public static final Set<Character> PIECES_BLACK = new HashSet<Character>();
+    public static final Set<Character> BLACK_PIECES = new HashSet<Character>();
     static {
-        PIECES_BLACK.add(KING_BLACK);
-        PIECES_BLACK.add(QUEEN_BLACK);
-        PIECES_BLACK.add(BISHOP_BLACK);
-        PIECES_BLACK.add(KNIGHT_BLACK);
-        PIECES_BLACK.add(ROOK_BLACK);
-        PIECES_BLACK.add(PAWN_BLACK);
+        BLACK_PIECES.add(BLACK_KING);
+        BLACK_PIECES.add(BLACK_QUEEN);
+        BLACK_PIECES.add(BLACK_BISHOP);
+        BLACK_PIECES.add(BLACK_KNIGHT);
+        BLACK_PIECES.add(BLACK_ROOK);
+        BLACK_PIECES.add(BLACK_PAWN);
     }
 
     // fen
-    public static final String FEN_START_POS =
+    public static final String START_POSITION_FEN =
             "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
 }

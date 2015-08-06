@@ -14,7 +14,7 @@ public class Parser {
         String fen;
 
         if(positionCommand.contains("startpos")) {
-            fen = Constants.FEN_START_POS;
+            fen = Constants.START_POSITION_FEN;
         }
         else if(positionCommand.contains("fen")) {
             int beginIndex = positionCommand.lastIndexOf("fen") + 4;
