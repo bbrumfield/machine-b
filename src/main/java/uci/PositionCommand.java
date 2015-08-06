@@ -1,5 +1,5 @@
 
-package user_commands;
+package uci;
 
 import java.util.List;
 

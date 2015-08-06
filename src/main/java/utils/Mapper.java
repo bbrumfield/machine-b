@@ -4,7 +4,7 @@ package utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import user_commands.PositionCommand;
+import uci.PositionCommand;
 import basics.Board;
 import basics.EnPassantTarget;
 import basics.GameState;
