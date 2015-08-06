@@ -6,11 +6,9 @@ import java.util.Set;
 
 public class Constants {
 
-    // board dimensions
     public static final int NUM_ROWS = 8;
     public static final int NUM_COLS = 8;
 
-    // pieces
     public static final char WHITE_KING = 'K';
     public static final char BLACK_KING = 'k';
 
@@ -31,7 +29,6 @@ public class Constants {
 
     public static final char EMPTY_PIECE = ' ';
 
-    // collections of pieces
     public static final Set<Character> WHITE_PIECES = new HashSet<Character>();
     static {
         WHITE_PIECES.add(WHITE_KING);
@@ -52,7 +49,6 @@ public class Constants {
         BLACK_PIECES.add(BLACK_PAWN);
     }
 
-    // fen
     public static final String START_POSITION_FEN =
             "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
